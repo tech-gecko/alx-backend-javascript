@@ -1,5 +1,7 @@
-/* Reads the file passed as argument synchronously and counts the number of
-   students in the file */
+/** 
+ * Reads the file passed as argument synchronously and counts the number of
+ * students in the file.
+ */
 const fs = require('fs');
 
 function countStudents(filePath) {
@@ -8,7 +10,8 @@ function countStudents(filePath) {
   }
 
   const data = fs.readFileSync(filePath, 'utf-8');
-  const lines = data.split('\n');
+  // trim() removes whitespace from both ends of the data.
+  const lines = data.split('\n').trim();
   console.log(`Number of students: ${lines.length - 1}`);
 
   const csLines = lines.filter((line) => line.includes('CS'));
