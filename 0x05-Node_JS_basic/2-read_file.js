@@ -1,4 +1,4 @@
-/** 
+/**
  * Reads the file passed as argument synchronously and counts the number of
  * students in the file.
  */
@@ -9,9 +9,15 @@ function countStudents(filePath) {
     throw new Error('Cannot load the database');
   }
 
+  if (!fs.statSync(filePath).isFile()) {
+    throw new Error('Cannot load the database');
+  }
+
   const data = fs.readFileSync(filePath, 'utf-8');
-  // trim() removes whitespace from both ends of the data.
-  const lines = data.split('\n').trim();
+  const lines = data
+    .split('\n') // Split the data into an array of lines.
+    .map((line) => line.trim()) // Trim each line to remove extra spaces.
+    .filter((line) => line); // Filter out empty lines.
   console.log(`Number of students: ${lines.length - 1}`);
 
   const csLines = lines.filter((line) => line.includes('CS'));
