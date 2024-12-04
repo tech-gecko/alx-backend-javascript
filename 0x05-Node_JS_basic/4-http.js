@@ -7,12 +7,13 @@ const { createServer } = require('http');
 const app = () => {
   const hostname = '127.0.0.1';
   const port = 1245;
-  console.log('Starting server setup...');
-  const server = createServer((req, res) => {
-    console.log('Received a request...');
+  const server = createServer((_, res) => {
+    responseText = 'Hello Holberton School!';
+
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello Holberton School!');
+    res.setHeader('Content-Length', responseText.length);
+    res.write(Buffer.from(responseText));
   });
 
   server.listen(port, hostname, () => {
@@ -21,3 +22,5 @@ const app = () => {
 };
 
 app();
+
+module.exports = app;
