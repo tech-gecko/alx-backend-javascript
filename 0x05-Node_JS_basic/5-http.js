@@ -21,10 +21,11 @@ app.on('request', (req, res) => {
   } else if (req.url === '/students') {
     // Logic for the /students route.
     res.statusCode = 200;
+    res.write('This is the list of our students\n');
     // Async handling.
     countStudents(process.argv[2])
       .then((result) => {
-        const responseText = `This is the list of our students\n${result}`;
+        const responseText = `${result}`;
 
         res.setHeader('Content-Type', 'text/plain');
         res.setHeader('Content-Length', responseText.length);
