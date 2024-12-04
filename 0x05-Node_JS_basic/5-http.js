@@ -25,7 +25,7 @@ const app = () => {
       countStudents(process.argv[2])
         .then((result) => {
           res.statusCode = 200;
-          res.end(`This is the list of our students\n${result}`)
+          res.end(`This is the list of our students\n${result}`);
         })
         .catch((err) => {
           res.statusCode = 500; // Internal server error
