@@ -29,6 +29,7 @@ app.on('request', (req, res) => {
         const responseText = `${result}`;
 
         res.write(Buffer.from(responseText));
+        res.end();
       })
       .catch((err) => {
         res.statusCode = 500; // Internal server error
