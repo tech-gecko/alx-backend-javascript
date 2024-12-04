@@ -8,7 +8,7 @@ const app = () => {
   const hostname = '127.0.0.1';
   const port = 1245;
   const server = createServer((_, res) => {
-    responseText = 'Hello Holberton School!';
+    const responseText = 'Hello Holberton School!';
 
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
