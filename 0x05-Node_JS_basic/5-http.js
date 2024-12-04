@@ -20,6 +20,7 @@ app.on('request', (req, res) => {
     res.write(Buffer.from(responseText));
   } else if (req.url === '/students') {
     // Logic for the /students route.
+    res.setHeader('Content-Type', 'text/plain');
     res.statusCode = 200;
     res.write('This is the list of our students\n');
     // Async handling.
@@ -27,8 +28,6 @@ app.on('request', (req, res) => {
       .then((result) => {
         const responseText = `${result}`;
 
-        res.setHeader('Content-Type', 'text/plain');
-        res.setHeader('Content-Length', responseText.length);
         res.write(Buffer.from(responseText));
       })
       .catch((err) => {
