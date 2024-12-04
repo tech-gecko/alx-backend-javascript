@@ -3,6 +3,7 @@
  * This is for older versions. For node 16 or later, import from 'node:http'.
  */
 const http = require('http');
+const countStudents = require('./3-read_file_async');
 
 const PORT = 1245;
 const HOST = 'localhost';
