@@ -28,6 +28,14 @@ async function countStudents(filePath) {
 
     console.log(`Number of students in CS: ${csLines.length}. List: ${csArray.join(', ')}`);
     console.log(`Number of students in SWE: ${sweLines.length}. List: ${sweArray.join(', ')}`);
+
+    // Return result that will be used in the next task.
+    const result = [
+      `Number of students: ${lines.length - 1}`,
+      `Number of students in CS: ${csLines.length}. List: ${csArray.join(', ')}`,
+      `Number of students in SWE: ${sweLines.length}. List: ${sweArray.join(', ')}`,
+    ].join('\n');
+    return result;
   } catch (err) {
     throw new Error('Cannot load the database');
   }
