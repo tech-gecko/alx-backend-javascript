@@ -20,12 +20,12 @@ const app = () => {
     } else if (req.url === '/students') {
       // Logic for the /students route.
       console.log("Received a request for '/students'...");
-      res.setHeader('Content-Type', 'text/plain');
+      res.statusCode = 200;
       // Async handling.
       countStudents(process.argv[2])
         .then((result) => {
-          res.statusCode = 200;
-          res.end(`This is the list of our students\n${result}`);
+          res.setHeader('Content-Type', 'text/plain');
+          res.end(`This is the list of our students\n${result}\n`);
         })
         .catch((err) => {
           res.statusCode = 500; // Internal server error
