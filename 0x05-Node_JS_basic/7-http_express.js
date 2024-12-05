@@ -9,6 +9,7 @@ const app = express();
 const PORT = 1245;
 
 app.get('/', (_, res) => {
+  // Logic for the home page.
   res.set('Content-Type', 'text/plain');
   res.send('Hello Holberton School!');
 });
@@ -16,7 +17,7 @@ app.get('/', (_, res) => {
 app.get('/students', (_, res) => {
   // Logic for the /students route.
   res.set('Content-Type', 'text/plain');
-  // Better way to handle response streams than the way in the file 5*.
+  // Better way to handle async responses than the way in the file 5*.
   const responseParts = ['This is the list of our students\n'];
   // Async handling.
   countStudents(process.argv[2])
@@ -25,9 +26,11 @@ app.get('/students', (_, res) => {
       res.status(200).send(responseParts.join('')); // Send the final response, but not as an array.
     })
     .catch((err) => {
-      // Send the error message with status 500.
+      // Send the first line, then the error message with status 500.
+      const errResponseParts = ['This is the list of our students\n'];
+      errResponseParts.push(err.message);
       // If you'd used sendStatus, it would have not sent any message after.
-      res.status(500).send('This is the list of our students\n' + err.message);
+      res.status(500).send(errResponseParts.join(''));
     });
 });
 
