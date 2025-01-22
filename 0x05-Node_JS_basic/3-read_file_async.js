@@ -7,9 +7,6 @@ const fs = require('fs').promises;
 
 async function countStudents(filePath) {
   try {
-    // async counterpart of fs.existsSync and the likes...
-    await fs.access(filePath);
-
     // async counterpart of fs.readFileSync.
     const data = await fs.readFile(filePath, 'utf-8');
     const lines = data
